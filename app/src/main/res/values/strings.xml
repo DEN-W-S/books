@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Books</string>
+    <string name="main_screen">Главная</string>
+    <string name="category">Категории</string>
+    <string name="impressum">impressum</string>
+    <string name="information">information</string>
+</resources>
