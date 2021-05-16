@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-   <include layout="@layout/botton_menu">
+   <include layout="@layout/content_main">
 
    </include>
 
