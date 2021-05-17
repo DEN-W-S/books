@@ -5,8 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -19,6 +18,7 @@ import com.google.android.material.navigation.NavigationView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
 
@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         buttonMain = findViewById(R.id.buttonMenu)
         drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         recyclerViewBooks = findViewById(R.id.recyclerViewBooks)
+        val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
         adapter = BooksAdapter()
         adapter.setSearchBook(ArrayList<SearchBook>())
         recyclerViewBooks.layoutManager = LinearLayoutManager(this)
@@ -46,10 +47,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ?.subscribe({
                 if (it != null) {
                     adapter.setSearchBook(it.getData() as List<SearchBook>)
+                    
                 }
             },{
 
             })
+
+
+
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when(checkedId){
+                R.id.radioButton ->{Toast.makeText(applicationContext, "Первый переключатель",
+                    Toast.LENGTH_SHORT).show();}
+                R.id.radioButton2 ->{ Toast.makeText(
+                    applicationContext, "Второй переключатель",
+                    Toast.LENGTH_SHORT).show();}
+                R.id.radioButton3 ->{ Toast.makeText(
+                    applicationContext, "Третий переключатель",
+                    Toast.LENGTH_SHORT).show();}
+            }
+
+            findViewById<RadioButton>(checkedId)?.apply {
+
+
+            }
+        }
     }
 
 
@@ -84,6 +106,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     fun onClickMenu(view : View) {
         drawer.openDrawer(GravityCompat.START)
     }
+
 }
 
 

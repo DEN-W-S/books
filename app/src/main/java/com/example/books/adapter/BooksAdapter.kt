@@ -10,11 +10,14 @@ import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.example.books.R
 import com.example.books.pojo.SearchBook
+import com.squareup.picasso.Picasso
 import java.lang.String
 
 class BooksAdapter : RecyclerView.Adapter<BooksAdapter.BooksViewHolder>(){
 
     private var searchBook: List<SearchBook> = listOf()
+
+
 
     fun setSearchBook(searchBook: List<SearchBook>) {
         this.searchBook = searchBook
@@ -32,11 +35,12 @@ class BooksAdapter : RecyclerView.Adapter<BooksAdapter.BooksViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: BooksViewHolder, position: Int) {
+
         holder.textTitleCard.text = searchBook[position].title
         holder.textDetailsCard.text = searchBook[position].dUrl
         holder.textNewPrice.text = searchBook[position].nPrice
         holder.textOldPrice.text = searchBook[position].oPrice
-        //holder.imageViewBook.setImageResource(searchBook[position].)
+        Picasso.get().load(searchBook[position].getImage()).into(holder.imageViewBook)
 
     }
 
@@ -49,6 +53,7 @@ class BooksAdapter : RecyclerView.Adapter<BooksAdapter.BooksViewHolder>(){
         val textOldPrice: TextView = itemView.findViewById(R.id.textOldPrice)
 
     }
+
 
 
 }
